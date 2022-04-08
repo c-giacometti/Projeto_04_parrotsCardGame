@@ -18,8 +18,10 @@ let baralho = [bobross, bobross2, explody, explody2, fiesta,
               fiesta2, metal, metal2, revertit, revertit2, triplets, 
               triplets2, unicorn, unicorn2];
 
-//define contador
+//define contadores
 let i = 0;
+let jogadas = 0;
+let par = 0;
 
 //prompt inicial
 let num = prompt("Com quantas cartas você quer jogar?");
@@ -62,40 +64,64 @@ function abrir(elemento){
     let esconder = elemento.querySelector("img");
     esconder.classList.add("hidden");
 
+    jogadas++;
+
     definirSePar();
+
+    return(jogadas);
 
 }
 
+//verifica 2 a 2 se as cartas com status "aberto" são iguais
 function definirSePar(){
-    let pares = [];
+
+        let cartasAbertas = [];
     
     for(let k = 0; k < baralho.length; k++){
+
         if(baralho[k].status === "aberto"){
-            pares.push(baralho[k].nome);
+            cartasAbertas.push(baralho[k].nome);
         }
+
     }
 
-    if(pares.length > 1){
-        if(pares[0] === pares[1]){
+    if(cartasAbertas.length > 1){
+
+        if(cartasAbertas[0] === cartasAbertas[1]){
+
             for(let k = 0; k < baralho.length; k++){
+
                 if(baralho[k].status === "aberto"){
                     baralho[k].status = "pareado";
+                    par++;
+                    if(par === baralho.length){
+                        setTimeout(ganhou, 500);
+                    }
                 }
+
             }
-            pares.length = 0;
+
+            cartasAbertas.length = 0;
+
         } else {
+
             for(let k = 0; k < baralho.length; k++){
+
                 if(baralho[k].status === "aberto"){
                     baralho[k].status = "fechado";
                 }
+
             }
-            pares.length = 0;
-            setTimeout(abertoOuFechado, 2000);
+
+            cartasAbertas.length = 0;
+            setTimeout(abertoOuFechado, 1000); //caso sejam diferentes, chama a função que fecha
+
         }
     }
 
 }
 
+//função que fecha as cartas
 function abertoOuFechado(){
 
     jogo.innerHTML = "";
@@ -120,4 +146,6 @@ function abertoOuFechado(){
     }
 }
 
-
+function ganhou(){
+    alert(`"Você ganhou em ${jogadas} jogadas!"`);
+}
