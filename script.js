@@ -49,6 +49,7 @@ while(i < num){
 
 
 let cronometro = document.querySelector(".timer");
+let pararTimer = setInterval(timer, 1000);
 
 //embaralha
 function comparador (){
@@ -57,8 +58,6 @@ function comparador (){
 
 // vira a carta
 function abrir(elemento){
-
-    let pararTimer = setInterval(timer, 1000);
 
     let mostrar = elemento.querySelector(".hidden");
     mostrar.classList.remove("hidden");
