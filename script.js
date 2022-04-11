@@ -47,6 +47,9 @@ while(i < num){
    i++;
 }
 
+
+let cronometro = document.querySelector(".timer");
+
 //embaralha
 function comparador (){
     return Math.random() - 0.5;
@@ -54,6 +57,8 @@ function comparador (){
 
 // vira a carta
 function abrir(elemento){
+
+    let pararTimer = setInterval(timer, 1000);
 
     let mostrar = elemento.querySelector(".hidden");
     mostrar.classList.remove("hidden");
@@ -147,5 +152,25 @@ function abertoOuFechado(){
 }
 
 function ganhou(){
-    alert(`"Você ganhou em ${jogadas} jogadas!"`);
+    clearInterval(pararTimer);
+    alert(`Você ganhou em ${jogadas} jogadas e ${cronometro.innerHTML} segundos!`);
+    let simOuNao;
+
+    while (simOuNao !== "sim" || simOuNao !== "não"){
+        simOuNao = prompt("Gostaria de reiniciar? (sim ou não)");
+        break;
+    }
+
+    if(simOuNao === "sim"){
+        jogo.innerHTML = "";
+        location.reload();
+    } 
+
+    if(simOuNao === "não") {
+        jogo.innerHTML = "";
+    }
+}
+
+function timer() {
+    cronometro.innerHTML ++;
 }

@@ -12,6 +12,21 @@ body {
     color: #75B79E;
     text-align: center;
     margin: 40px 0px 50px 0px;
+    position: relative;
+}
+
+.timer {
+    height: 30px;
+    width: 50px;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    background-color: #75B79E;
 }
 
 .game {
@@ -35,7 +50,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: #A7E9AF;
-    margin: 0px 0px 30px 30px;
+    margin: 0px 15px 30px 15px;
     border: 1px solid #99CEA8;
     border-radius: 5px;
     backface-visibility: hidden;
@@ -57,7 +72,7 @@ body {
 }
 
 .card:active {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
   }
 
 @media(max-width: 414px){
@@ -67,5 +82,9 @@ body {
 
     .cards {
         width: 60%;
+    }
+
+    .timer {
+        right: 43%;
     }
 }
